@@ -18,3 +18,6 @@ Two APIs have been implemented
 To ensure that we can add a car to a station, I defined sub-resources ``/stations/:stationName/cars``
 
 Each CRUD operation is implemented beside updating cars for ``/stations/:stationName/cars``
+
+# Limitation
+Deleting a car implies deleting that the car is associated to a station (This wasn't implemented)
