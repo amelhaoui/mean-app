@@ -21,4 +21,5 @@ Each CRUD operation is implemented beside updating cars for ``/stations/:station
 
 # Limitation and future
 Deleting a car implies deleting that the car is associated to a station (This wasn't implemented)
+
 There is no verification in terms of cookies (like CSRF token) or Auth
