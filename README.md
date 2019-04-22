@@ -19,5 +19,6 @@ To ensure that we can add a car to a station, I defined sub-resources ``/station
 
 Each CRUD operation is implemented beside updating cars for ``/stations/:stationName/cars``
 
-# Limitation
+# Limitation and future
 Deleting a car implies deleting that the car is associated to a station (This wasn't implemented)
+There is no verification in terms of cookies (like CSRF token) or Auth
