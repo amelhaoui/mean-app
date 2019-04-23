@@ -37,10 +37,10 @@ router.post('/', Util.checkName, (req, res, next) => {
     resource.save((err) => {
         if (err) {
             if (err.code === 11000) {
-                next(createError.BadRequest());
+                return next(createError.BadRequest());
                 // if we have an error different than duplicate
             } else {
-                next(createError(err));
+                return next(createError(err));
             }
         }
 
