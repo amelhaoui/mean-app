@@ -1,7 +1,7 @@
 # mean-app
 
 # Guide
-To run the server
+To run the server, you should have mongodb installed and run the deamon beforehand
 ```
 npm install
 npm start
