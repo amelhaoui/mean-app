@@ -6,8 +6,10 @@ const Car = require(__basedir + '/models/model').Car;
 const Util = require(__basedir + '/Util');
 
 /**
- * Get all stations name
+ * Get all stations names
  * GET /stations
+ * Return:
+ *      { items : array of car names, count: number of elements }
  */
 router.get('/', (req, res, next) => {
     Station.find((err, stations) => {
@@ -29,6 +31,10 @@ router.get('/', (req, res, next) => {
 /**
  * Create a new station
  * POST /stations
+ * @Body Params: 
+ *     name : requiered
+ * Return:
+ *      Location of new resource in header response
  */
 router.post('/', Util.checkName, (req, res, next) => {
     const requestedName = req.body.name;
@@ -52,6 +58,8 @@ router.post('/', Util.checkName, (req, res, next) => {
 /**
  * Get info about station
  * GET /stations/:id
+ * Return:
+ *     { name: name of station }
  */
 router.get('/:id', (req, res, next) => {
     const requestedResource = req.params.id;
@@ -67,6 +75,8 @@ router.get('/:id', (req, res, next) => {
 /**
  * Delete a station
  * DELETE /stations/:id
+ * Return:
+ *      Nothing 200 for OK
  */
 router.delete('/:id', (req, res, next) => {
     const requestedResource = req.params.id;
@@ -90,6 +100,7 @@ router.delete('/:id', (req, res, next) => {
 
         Station.remove({name: requestedResource}, (err, obj) => {
             if (err) return next(createError(err));
+            // No station was deleted
             if (obj.deletedCount == 0) return next(createError.BadRequest());
 
 
@@ -102,6 +113,10 @@ router.delete('/:id', (req, res, next) => {
 /**
  * Update a station (name)
  * PUT /stations/:id
+ * @Body Params: 
+ *     name : requiered
+ * Return:
+ *      Location of new resource in header response
  */
 router.put('/:id', Util.checkName, (req, res, next) => {
     const requestedResource = req.params.id;
@@ -109,6 +124,7 @@ router.put('/:id', Util.checkName, (req, res, next) => {
 
     Station.updateOne({name: requestedResource}, {name: newName}, (err, obj) => {
         if (err) return next(createError(err));
+        // Did not find a match to update
         if (!obj.n) return next(createError.BadRequest());
 
         next();
@@ -118,6 +134,10 @@ router.put('/:id', Util.checkName, (req, res, next) => {
 /**
  * Associate a car to a station
  * POST /stations/:id/cars
+ * @Body Params: 
+ *     name : requiered 
+ * Return:
+ *      Status code 201 if associated, no location header (to discuss)
  */
 router.post('/:id/cars', Util.checkName, (req, res, next) => {
     const amendCar = req.body.name;
@@ -153,6 +173,8 @@ router.post('/:id/cars', Util.checkName, (req, res, next) => {
 /**
  * Remove a car from a station
  * DELETE /stations/:id/cars/:carName
+ * Return:
+ *      status code 200 if done
  */
 router.delete('/:id/cars/:carName', (req, res, next) => {
     const carName = req.params.carName;
@@ -197,6 +219,8 @@ router.delete('/:id/cars/:carName', (req, res, next) => {
 /**
  * Get all cars in a particular station
  * GET /stations/:id/cars
+ * Return:
+ *      {name: name of station, cars: collection of cars}
  */
 router.get('/:id/cars', (req, res, next) => {
     const stationName = req.params.id;
