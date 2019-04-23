@@ -14,7 +14,9 @@ npm test
 # Architecture and API design
 Two APIs have been implemented
 /cars and /stations
+
 1- /Stations
+
 - POST: /stations
   Req: Body param name
   Res: Location of new resource in response header, property 'location'
@@ -34,7 +36,9 @@ Two APIs have been implemented
   Res: list of all cars associated to this station
 - DELELTE: /stations/:stationName/cars/:carName
   Res: 200 for OK
+  
 2-  /cars 
+
 - POST: /cars
   Req: Body param name
   Res: Location of new resource in response header, property 'location'
