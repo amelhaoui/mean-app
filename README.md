@@ -19,9 +19,13 @@ To ensure that we can add a car to a station, I defined sub-resources ``/station
 
 Each CRUD operation is implemented beside updating cars for ``/stations/:stationName/cars``
 
-#Remarks
-For POST/PUT request, I return a 201 status for created resource and a header location
-For GET request where I return a collection like all cars or all stations, i put them into a collection I named “items”
+# Remarks and assumptions
+
+- For POST/PUT requests, we send a body field “name” to either create or update a car/station
+- For POST/PUT request, I return a 201 status for created resource and a header location
+- For GET request where I return a collection like all cars or all stations, i put them into a collection I named “items”
+- I added 2 internal fields in the schema: _cars and _station. These fields contain respectively a list of internal ids of cars and internal id of the station the car belongs to
+
 
 
 # Limitation and future
