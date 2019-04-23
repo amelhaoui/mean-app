@@ -34,3 +34,5 @@ Deleting a car implies deleting that the car is associated to a station (This wa
 There is no verification in terms of cookies (like CSRF token) or Auth
 
 Error messages don’t give much information at the moment.
+
+In test suite, we don’t test about errors though implemented like adding same car or adding a car to two stations..
